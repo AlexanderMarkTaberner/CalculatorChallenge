@@ -12,6 +12,11 @@ namespace CalculatorChallenge
             return result;
         }
 
+        public static async Task<double> CalculateAsync(string userInput)
+        {
+            return await Task.Run(() => Calculate(userInput));
+        }
+
         private static Queue<string> ParseToPostfix(string userInput)
         {
             //Shunting yard algorithm
