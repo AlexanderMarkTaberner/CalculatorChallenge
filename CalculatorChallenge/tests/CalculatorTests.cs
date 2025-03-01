@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace CalculatorChallenge.tests
 {
     [TestFixture]
-    internal class Class1
+    internal class CalculatorTests
     {
     }
 }

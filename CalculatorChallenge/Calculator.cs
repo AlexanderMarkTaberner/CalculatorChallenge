@@ -94,7 +94,7 @@ namespace CalculatorChallenge
                             output.Enqueue(operations.Pop().ToString());
                         }
                         operations.Pop();
-                        output.Enqueue(operations.Pop().ToString());
+                        if(operations.Count > 0) output.Enqueue(operations.Pop().ToString());
                         operatorFlag = false;
                     }
                     
