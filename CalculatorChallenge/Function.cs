@@ -18,7 +18,7 @@ public class CalculationHandler
         {
             var result = await Calculator.CalculateAsync(formula.Formula);
 
-            context.Logger.LogInformation($"Successfully processed calculation \"{formula}\" with result \"{result}\".");
+            context.Logger.LogInformation($"Successfully processed calculation \"{formula.Formula}\" with result \"{result}\".");
             return result.ToString();
         }
         catch (Exception ex)

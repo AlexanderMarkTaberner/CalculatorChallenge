@@ -19,8 +19,8 @@ namespace CalculatorChallenge
 
         public MathFunction(string a, string b)
         {
-            this.A = Convert.ToInt32(a);
-            this.B = Convert.ToInt32(b);
+            this.A = Convert.ToDouble(a);
+            this.B = Convert.ToDouble(b);
         }
 
         public double Multiplication()
