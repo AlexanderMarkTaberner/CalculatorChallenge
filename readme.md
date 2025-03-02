@@ -20,6 +20,7 @@ And run the applicaiton:
 
 ```Powershell
 .\CalculatorChallenge\bin\Debug\net8.0\CalculatorChallenge.exe "2.5+2*(4-3/2)^2"
+The result of "-5--46-5" is: 46
 ```
 
 ## Usage
