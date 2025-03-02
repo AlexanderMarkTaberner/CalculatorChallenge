@@ -4,7 +4,8 @@
     {
         static void Main(string[] args)
         {
-            var test = Calculator.Calculate(args[0]);
+            var calculation = Calculator.Calculate(args[0]);
+            Console.WriteLine($"The result of \"{args[0]}\" is: {calculation}");
         }
     }
 }

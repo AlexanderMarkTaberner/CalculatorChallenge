@@ -12,17 +12,19 @@ namespace CalculatorChallenge
             return result;
         }
 
-        private static Queue<string> ParseToPostfix(string userInput)
+        public static Queue<string> ParseToPostfix(string userInput)
         {
             //Shunting yard algorithm
             var operations = new Stack<char>();
             var output = new Queue<string>();
             var numberbuffer = new StringBuilder();
-            var operatorFlag = false;
+            var operatorFlag = true;
 
             foreach(var character in userInput)
             {
-                if (char.IsDigit(character) || character == '.' || (operatorFlag && character=='-'))
+                if (char.IsDigit(character) 
+                    || character == '.' && numberbuffer.Length > 0 
+                    || (operatorFlag && character=='-'))
                 {
                     numberbuffer.Append(character);
                     operatorFlag = false;
@@ -32,7 +34,9 @@ namespace CalculatorChallenge
                     if (operatorFlag) throw new ArgumentException("Command not valid math. Too many subsequent operators.");
                     if (numberbuffer.Length > 0)
                     {
-                        output.Enqueue(numberbuffer.ToString());
+                        var number = numberbuffer.ToString();
+                        if (number == "-") throw new ArgumentException("Command not valid math. Too many subsequent operators.");
+                        output.Enqueue(number);
                         numberbuffer.Clear();
                     }
 
@@ -42,28 +46,32 @@ namespace CalculatorChallenge
                             operations.Push('^');
                             break;
                         case '*':
-                            while(operations.TryPeek(out var topOfStack) && topOfStack == '^')
+                            while(operations.TryPeek(out var topOfStack) 
+                                && topOfStack == '^')
                             {
                                 output.Enqueue(operations.Pop().ToString());
                             }
                             operations.Push('*');
                             break;
                         case '/':
-                            while (operations.TryPeek(out var topOfStack) && topOfStack == '^')
+                            while (operations.TryPeek(out var topOfStack) 
+                                && topOfStack == '^')
                             {
                                 output.Enqueue(operations.Pop().ToString());
                             }
                             operations.Push('/');
                             break;
                         case '+':
-                            while (operations.TryPeek(out var topOfStack) && "*/^".Contains(topOfStack))
+                            while (operations.TryPeek(out var topOfStack) 
+                                && "*/^".Contains(topOfStack))
                             {
                                 output.Enqueue(operations.Pop().ToString());
                             }
                             operations.Push('+');
                             break;
                         case '-':
-                            while (operations.TryPeek(out var topOfStack) && "*/^".Contains(topOfStack))
+                            while (operations.TryPeek(out var topOfStack) 
+                                && "*/^".Contains(topOfStack))
                             {
                                 output.Enqueue(operations.Pop().ToString());
                             }
@@ -78,7 +86,9 @@ namespace CalculatorChallenge
                 {
                     if (numberbuffer.Length > 0)
                     {
-                        output.Enqueue(numberbuffer.ToString());
+                        var number = numberbuffer.ToString();
+                        if (number == "-") throw new ArgumentException("Command not valid math. Too many subsequent operators.");
+                        output.Enqueue(number);
                         numberbuffer.Clear();
                     }
 
@@ -89,7 +99,8 @@ namespace CalculatorChallenge
                     }
                     else
                     {
-                        while(operations.TryPeek(out var topOfStack) && topOfStack != '(')
+                        while(operations.TryPeek(out var topOfStack) 
+                            && topOfStack != '(')
                         {
                             output.Enqueue(operations.Pop().ToString());
                         }
@@ -107,7 +118,9 @@ namespace CalculatorChallenge
 
             if (numberbuffer.Length > 0)
             {
-                output.Enqueue(numberbuffer.ToString());
+                var number = numberbuffer.ToString();
+                if (number == "-") throw new ArgumentException("Command not valid math. Too many subsequent operators.");
+                output.Enqueue(number);
                 numberbuffer.Clear();
             }
 
@@ -118,7 +131,7 @@ namespace CalculatorChallenge
             return output;
         }
 
-        private static double ResolvePostfix(Queue<string> postfix)
+        public static double ResolvePostfix(Queue<string> postfix)
         {
             var calculation = new Stack<double>();
 
@@ -131,7 +144,10 @@ namespace CalculatorChallenge
                 }
                 else
                 {
-                    var math = new MathFunction(calculation.Pop(), calculation.Pop());
+                    var b = calculation.Pop();
+                    var a = calculation.Pop();
+
+                    var math = new MathFunction(a, b);
 
                     switch (operationNumber)
                     {

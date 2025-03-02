@@ -26,6 +26,6 @@ And run the applicaiton:
 
 The commandline argument must be a syntaxicly correct mathematical formula in a string format.
 There is support for:
-    * Rational numbers. (Negitive, positive, decimal)
-    * Addition, Subtraction, Division, Multiplication, Exponents.
-    * Parenthises.
+* Rational numbers (Negitive, Positive, Decimal)
+* Addition, Subtraction, Division, Multiplication, Exponents
+* Parenthises
