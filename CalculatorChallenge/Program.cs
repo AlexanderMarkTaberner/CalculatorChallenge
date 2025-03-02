@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            var test = Calculator.Calculate("(5+5)");
+            var test = Calculator.Calculate(args[0]);
         }
     }
 }

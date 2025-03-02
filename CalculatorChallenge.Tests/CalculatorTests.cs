@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CalculatorChallenge.tests
+namespace CalculatorChallenge.Tests
 {
     [TestFixture]
     internal class CalculatorTests
