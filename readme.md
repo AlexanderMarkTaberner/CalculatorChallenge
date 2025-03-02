@@ -10,7 +10,7 @@ Both can be obtained through: https://visualstudio.microsoft.com/vs/
 Open the solution file in the root of the project called "CalculatorChallenge.sln"
 And follow the steps inside visual studio to build and run the console application.
 
-Alternatively you can user powershell to build the project:
+Alternatively you can use powershell to build the project:
 
 ```Powershell
 dotnet build .\CalculatorChallenge.sln
