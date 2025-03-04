@@ -107,12 +107,12 @@ namespace CalculatorChallenge
         {
             if (numberBuffer.Length > 0)
             {
-                String number = numberBuffer.ToString();
+                string number = numberBuffer.ToString();
                 if (number == "-")
                 {
                     throw new ArgumentException("Command not valid math. Too many subsequent operators.");
                 }
-                output.Append(number);
+                output.Enqueue(number);
                 numberBuffer.Clear();
             }
         }
