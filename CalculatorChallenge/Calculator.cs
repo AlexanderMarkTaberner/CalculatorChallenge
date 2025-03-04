@@ -107,7 +107,7 @@ namespace CalculatorChallenge
                 {
                     throw new ArgumentException("Command not valid math. Too many subsequent operators.");
                 }
-                output.Append(number);
+                output.Enqueue(number);
                 numberBuffer.Clear();
             }
         }
